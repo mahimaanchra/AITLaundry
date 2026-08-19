@@ -16,3 +16,6 @@ export const CLOTH_TYPES = [
   'Shirt', 'T-Shirt', 'Trousers/Pants', 'Jeans', 
   'Bed Sheet', 'Pillow Cover', 'Towel', 'Other'
 ];
+
+export const HOSTELS = ['Hostel A', 'Hostel B', 'Hostel C'];
+export const FLANKS = ['Flank 1', 'Flank 2', 'Flank 3', 'Flank 4'];
