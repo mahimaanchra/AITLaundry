@@ -5,23 +5,7 @@ const LaundryContext = createContext();
 
 export function LaundryProvider({ children }) {
   // Global array storing all laundry entries
-  const [entries, setEntries] = useState([
-    // Pre-populated mock entry for testing
-    {
-      id: 'REQ-1001',
-      studentName: 'Rahul Sharma',
-      rollNo: '21045',
-      hostel: 'Hostel A',
-      flank: 'Flank 1',
-      page: '42',
-      items: [
-        { clothType: 'Shirt', quantity: 2, itemCode: 'S-12' },
-        { clothType: 'Pants', quantity: 1, itemCode: 'P-05' },
-      ],
-      status: LAUNDRY_STATUS.SUBMITTED,
-      createdAt: new Date().toISOString(),
-    },
-  ]);
+  const [entries, setEntries] = useState([]);
 
   // Add new submission from student
   const addEntry = (studentInfo, items) => {
