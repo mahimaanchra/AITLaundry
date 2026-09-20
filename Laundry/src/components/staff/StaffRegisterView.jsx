@@ -39,24 +39,26 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
             <span>Entry ID: #{activeEntry.id}</span>
           </div>
 
-          <table className="w-full border-collapse text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-xs uppercase text-muted">
-                <th className="py-2 font-semibold">Cloth Type</th>
-                <th className="py-2 font-semibold">Quantity</th>
-                <th className="py-2 font-semibold">Tag / Code</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {activeEntry.items.map((item, idx) => (
-                <tr key={idx}>
-                  <td className="py-2.5 font-medium text-ink">{item.clothType}</td>
-                  <td className="py-2.5 font-mono text-muted">{item.quantity}</td>
-                  <td className="py-2.5 font-mono text-muted">{item.itemCode || '-'}</td>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[420px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-border text-xs uppercase text-muted">
+                  <th className="py-2 font-semibold">Cloth Type</th>
+                  <th className="py-2 font-semibold">Quantity</th>
+                  <th className="py-2 font-semibold">Tag / Code</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {activeEntry.items.map((item, idx) => (
+                  <tr key={idx}>
+                    <td className="py-2.5 font-medium text-ink">{item.clothType}</td>
+                    <td className="py-2.5 font-mono text-muted">{item.quantity}</td>
+                    <td className="py-2.5 font-mono text-muted">{item.itemCode || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div className="flex flex-wrap gap-3 border-t border-border pt-4">
             {activeEntry.status === LAUNDRY_STATUS.SUBMITTED && (

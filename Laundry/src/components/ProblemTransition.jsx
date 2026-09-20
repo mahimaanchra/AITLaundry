@@ -39,7 +39,7 @@ export default function ProblemTransition() {
                   <span className="hidden truncate text-muted sm:inline">{row.items}</span>
                   <span
                     className={`shrink-0 font-mono text-[11px] font-bold ${
-                      row.status === 'Received' ? 'text-teal' : 'text-warn'
+                      row.status === 'Received' ? 'text-teal' : 'text-warn-strong'
                     }`}
                   >
                     {row.status}

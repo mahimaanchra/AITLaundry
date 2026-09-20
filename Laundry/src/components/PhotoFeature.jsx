@@ -1,4 +1,4 @@
-import { Camera, Check } from 'lucide-react';
+import { Camera, Check, Shirt } from 'lucide-react';
 import Reveal from './landing/Reveal';
 
 export default function PhotoFeature() {
@@ -7,7 +7,7 @@ export default function PhotoFeature() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn-strong">
               <Camera aria-hidden="true" className="h-3.5 w-3.5" /> Optional Identification
             </span>
             <h2 className="mt-4 text-balance font-display text-3xl font-semibold tracking-tight text-ink">
@@ -30,8 +30,8 @@ export default function PhotoFeature() {
               </div>
 
               <div className="space-y-3 rounded-md border border-border bg-surface p-4">
-                <div className="flex h-32 items-center justify-center rounded border border-border bg-background text-4xl">
-                  👔
+                <div className="flex h-32 items-center justify-center rounded border border-border bg-background text-muted">
+                  <Shirt aria-hidden="true" className="h-10 w-10" strokeWidth={1.5} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>

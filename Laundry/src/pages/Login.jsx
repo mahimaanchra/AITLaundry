@@ -24,11 +24,12 @@ export default function Login() {
         hostel: 'Hostel A',
         flank: 'Flank 1',
         page: '42',
+        ...(isStaff ? {} : { rollNo: '21045' }),
       };
 
       login(mockUser);
       setLoading(false);
-      navigate('/dashboard');
+      navigate(isStaff ? '/staff' : '/student');
     }, 500);
   };
 

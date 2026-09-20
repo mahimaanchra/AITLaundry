@@ -45,24 +45,16 @@ export default function StudentDashboard() {
   return (
     <Layout user={currentUser} onLogout={handleLogout}>
       <div className="space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-ink bg-ink p-6 text-background">
-          <div>
-            <span className="rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn">
-              Active Register Page
-            </span>
-            <h2 className="mt-3 font-display text-2xl font-semibold">
-              {currentUser.name} ({currentUser.rollNo})
-            </h2>
-            <p className="mt-1 text-sm text-background/60">
-              {currentUser.hostel} · {currentUser.flank} · Page #{currentUser.page}
-            </p>
-          </div>
-          <div className="rounded-md border border-background/15 bg-background/5 px-4 py-3 text-right">
-            <span className="block font-mono text-[11px] uppercase tracking-widest text-background/50">Status</span>
-            <span className="font-display text-base font-semibold text-warn">
-              {activeRequest ? activeRequest.status : 'Ready to Enter'}
-            </span>
-          </div>
+        <div className="rounded-lg border border-ink bg-ink p-6 text-background">
+          <span className="rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn-strong">
+            Active Register Page
+          </span>
+          <h2 className="mt-3 font-display text-2xl font-semibold">
+            {currentUser.name} ({currentUser.rollNo})
+          </h2>
+          <p className="mt-1 text-sm text-background/60">
+            {currentUser.hostel} · {currentUser.flank} · Page #{currentUser.page}
+          </p>
         </div>
 
         {activeRequest ? (

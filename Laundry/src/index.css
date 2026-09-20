@@ -18,6 +18,7 @@
   --color-teal-soft: var(--wl-teal-soft);
   --color-warn: var(--wl-warn);
   --color-warn-soft: var(--wl-warn-soft);
+  --color-warn-strong: var(--wl-warn-strong);
   --color-danger: var(--wl-danger);
   --color-danger-soft: var(--wl-danger-soft);
   --color-paper-line: var(--wl-paper-line);
@@ -54,6 +55,7 @@
   --wl-teal-soft: #e4f2ef;
   --wl-warn: #b8721a;
   --wl-warn-soft: #f7ecd9;
+  --wl-warn-strong: #8a5310;
   --wl-danger: #b4432e;
   --wl-danger-soft: #f8e6e1;
   --wl-paper-line: rgba(20, 23, 31, 0.07);
@@ -79,6 +81,7 @@
   --wl-teal-soft: #143029;
   --wl-warn: #e0a64d;
   --wl-warn-soft: #322616;
+  --wl-warn-strong: #e0a64d;
   --wl-danger: #e2685a;
   --wl-danger-soft: #331d1a;
   --wl-paper-line: rgba(255, 255, 255, 0.065);
@@ -113,6 +116,7 @@ body {
   color: var(--wl-ink);
   font-family: var(--font-sans);
   transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
 }
 
 ::selection {

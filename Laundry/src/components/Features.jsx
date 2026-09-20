@@ -22,7 +22,7 @@ export default function Features() {
           description="Not a generic inventory tool — every feature maps to a step your laundry desk already performs."
         />
 
-        <div className="mt-16 grid gap-5 lg:grid-cols-6">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
           <Reveal className="rounded-lg border border-border bg-surface p-7 lg:col-span-4">
             <div className="flex items-start justify-between">
               <FileText aria-hidden="true" className="h-5 w-5 text-accent" strokeWidth={1.75} />
@@ -99,7 +99,7 @@ export default function Features() {
 
           <Reveal
             delay={0.24}
-            className="flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-center lg:col-span-6"
+            className="flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-center sm:col-span-2 lg:col-span-6"
           >
             <div className="flex items-center gap-4">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-warn/30 bg-warn-soft text-warn">

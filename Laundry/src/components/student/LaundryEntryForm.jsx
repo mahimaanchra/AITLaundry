@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { Bed, Footprints, Layers, Shirt, ShoppingBasket, TowelRack } from 'lucide-react';
 import Button from '../common/Button';
 
 const FABRIC_ITEMS = [
-  { id: 'tshirt', label: 'T-Shirts & Tops', icon: '👕', badge: 'Cotton' },
-  { id: 'trousers', label: 'Pants & Jeans', icon: '👖', badge: 'Denim' },
-  { id: 'bedsheet', label: 'Bedsheets', icon: '🛏️', badge: 'Linen' },
-  { id: 'towel', label: 'Towels', icon: '🧴', badge: 'Terry' },
-  { id: 'socks', label: 'Socks & Delicates', icon: '🧦', badge: 'Knit' },
-  { id: 'other', label: 'Other Clothes', icon: '🧺', badge: 'Mixed' },
+  { id: 'tshirt', label: 'T-Shirts & Tops', icon: Shirt, badge: 'Cotton' },
+  { id: 'trousers', label: 'Pants & Jeans', icon: Footprints, badge: 'Denim' },
+  { id: 'bedsheet', label: 'Bedsheets', icon: Bed, badge: 'Linen' },
+  { id: 'towel', label: 'Towels', icon: TowelRack, badge: 'Terry' },
+  { id: 'socks', label: 'Socks & Delicates', icon: Layers, badge: 'Knit' },
+  { id: 'other', label: 'Other Clothes', icon: ShoppingBasket, badge: 'Mixed' },
 ];
 
 export default function LaundryEntryForm({ onSubmit, loading }) {
@@ -62,7 +63,9 @@ export default function LaundryEntryForm({ onSubmit, loading }) {
               className="flex flex-col justify-between rounded-lg border border-border bg-surface p-4"
             >
               <div className="mb-3 flex items-start gap-2.5">
-                <span className="text-2xl" aria-hidden="true">{item.icon}</span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-background text-muted" aria-hidden="true">
+                  <item.icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </span>
                 <div>
                   <h4 className="font-display text-sm font-semibold text-ink">{item.label}</h4>
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted">
@@ -75,7 +78,8 @@ export default function LaundryEntryForm({ onSubmit, loading }) {
                 <button
                   type="button"
                   onClick={() => updateCount(item.id, -1)}
-                  className="flex h-7 w-7 items-center justify-center rounded border border-border bg-surface text-sm font-bold text-ink transition-colors hover:bg-border/40 active:scale-95"
+                  aria-label={`Decrease ${item.label} quantity`}
+                  className="flex h-11 w-11 items-center justify-center rounded border border-border bg-surface text-sm font-bold text-ink transition-colors hover:bg-border/40 active:scale-95"
                 >
                   −
                 </button>
@@ -83,7 +87,8 @@ export default function LaundryEntryForm({ onSubmit, loading }) {
                 <button
                   type="button"
                   onClick={() => updateCount(item.id, 1)}
-                  className="flex h-7 w-7 items-center justify-center rounded bg-accent text-sm font-bold text-accent-ink transition-colors hover:bg-accent-strong active:scale-95"
+                  aria-label={`Increase ${item.label} quantity`}
+                  className="flex h-11 w-11 items-center justify-center rounded bg-accent text-sm font-bold text-accent-ink transition-colors hover:bg-accent-strong active:scale-95"
                 >
                   +
                 </button>

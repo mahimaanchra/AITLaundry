@@ -1,7 +1,7 @@
 const TONE_CLASSES = {
   teal: 'border-teal/30 bg-teal-soft text-teal',
   accent: 'border-accent/30 bg-accent-ink text-accent',
-  warn: 'border-warn/30 bg-warn-soft text-warn',
+  warn: 'border-warn/30 bg-warn-soft text-warn-strong',
 };
 
 export default function RegisterCard({

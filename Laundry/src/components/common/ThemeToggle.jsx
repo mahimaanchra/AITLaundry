@@ -11,7 +11,7 @@ export default function ThemeToggle({ className = '' }) {
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       aria-pressed={isDark}
-      className={`relative flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted transition-colors duration-200 hover:border-ink/30 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${className}`}
+      className={`relative flex h-11 w-11 items-center justify-center rounded-md border border-border text-muted transition-colors duration-200 hover:border-ink/30 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${className}`}
     >
       <Sun
         aria-hidden="true"
