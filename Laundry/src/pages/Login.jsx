@@ -25,7 +25,7 @@ export default function Login() {
 
       login(mockUser);
       setLoading(false);
-      navigate(isStaff ? '/staff' : '/student');
+      navigate('/dashboard');
     }, 500);
   };
 

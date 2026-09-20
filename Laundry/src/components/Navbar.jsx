@@ -35,7 +35,7 @@ export default function Navbar() {
           {/* Right Action */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="/login"
+              href="/dashboard"
               className="inline-flex items-center space-x-1.5 bg-[#1E3A8A] text-amber-50 px-4 py-2 rounded-lg text-sm font-bold hover:bg-indigo-900 transition-colors border border-indigo-950 shadow-xs"
             >
               <span>Login to Register</span>
@@ -88,7 +88,7 @@ export default function Navbar() {
             About
           </a>
           <a
-            href="/login"
+            href="/dashboard"
             onClick={() => setIsOpen(false)}
             className="w-full text-center block bg-[#1E3A8A] text-amber-50 px-4 py-2.5 rounded-lg font-bold text-sm shadow-xs border border-indigo-950 mt-4"
           >
