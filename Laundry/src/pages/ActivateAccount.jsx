@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { Shirt } from 'lucide-react';
 import { activateAccount } from '../services/authService';
+import Button from '../components/common/Button';
 
 export default function ActivateAccount() {
   const [searchParams] = useSearchParams();
@@ -29,46 +31,73 @@ export default function ActivateAccount() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md border border-gray-100">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">Activate Account</h2>
-        <p className="text-sm text-gray-500 text-center mb-6">Set your password to complete activation</p>
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
+      <div className="w-full max-w-sm">
+        <Link to="/" className="mb-8 flex items-center justify-center gap-2.5">
+          <span className="flex h-8 w-8 items-center justify-center rounded-md border border-accent-strong bg-accent text-accent-ink">
+            <Shirt aria-hidden="true" className="h-4 w-4" />
+          </span>
+          <span className="font-display text-[15px] font-semibold tracking-tight text-ink">
+            WashLog
+          </span>
+        </Link>
 
-        {status.error && <div className="bg-red-50 text-red-600 p-3 rounded mb-4 text-sm">{status.error}</div>}
-        {status.success && <div className="bg-green-50 text-green-600 p-3 rounded mb-4 text-sm">Account activated! Redirecting to login...</div>}
+        <div className="rounded-lg border border-border bg-surface p-7 shadow-[0_1px_2px_rgba(20,23,31,0.05)]">
+          <h2 className="font-display text-xl font-semibold text-ink">Activate your account</h2>
+          <p className="mt-1 text-sm text-muted">Set a password to complete activation.</p>
 
-        <form onSubmit={handleActivation} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-            <input
-              type="password"
-              required
-              minLength={6}
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          {status.error && (
+            <div className="mt-4 rounded-md border border-danger/30 bg-danger-soft px-3 py-2 text-sm text-danger">
+              {status.error}
+            </div>
+          )}
+          {status.success && (
+            <div className="mt-4 rounded-md border border-teal/30 bg-teal-soft px-3 py-2 text-sm text-teal">
+              Account activated! Redirecting to login…
+            </div>
+          )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-            <input
-              type="password"
-              required
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
+          <form onSubmit={handleActivation} className="mt-5 space-y-5">
+            <div>
+              <label htmlFor="password" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+                New Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                required
+                minLength={6}
+                className="w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-ink outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-          <button
-            type="submit"
-            disabled={status.loading || status.success}
-            className="w-full bg-indigo-600 text-white py-2 rounded-md font-medium hover:bg-indigo-700 disabled:opacity-50"
-          >
-            {status.loading ? 'Activating...' : 'Set Password'}
-          </button>
-        </form>
+            <div>
+              <label htmlFor="confirmPassword" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                className="w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-ink outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+
+            <Button
+              as="button"
+              type="submit"
+              disabled={status.loading || status.success}
+              showIcon={false}
+              className="w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status.loading ? 'Activating…' : 'Set Password'}
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );

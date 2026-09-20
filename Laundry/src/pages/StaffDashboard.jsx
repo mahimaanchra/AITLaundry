@@ -1,12 +1,21 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/common/Layout';
 import RegisterNavigator from '../components/staff/RegistrationNavigator';
 import StaffRegisterView from '../components/staff/StaffRegisterView';
 import { useLaundry } from '../context/LaundryContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function StaffDashboard() {
   const { entries, updateStatus } = useLaundry();
-  const mockStaff = { name: 'Ramesh Kumar (Laundry Staff)', role: 'STAFF' };
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const currentStaff = user || { name: 'Ramesh Kumar (Laundry Staff)', role: 'STAFF' };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   const [selectedLocation, setSelectedLocation] = useState({
     hostel: 'Hostel A',
@@ -55,7 +64,7 @@ export default function StaffDashboard() {
   };
 
   return (
-    <Layout user={mockStaff} onLogout={() => console.log('logout')}>
+    <Layout user={currentStaff} onLogout={handleLogout}>
       <div className="space-y-6">
         <RegisterNavigator onSelectPage={handleSelectPage} onSearch={handleSearch} />
         <StaffRegisterView pageData={pageData} onUpdateStatus={handleUpdateStatus} />

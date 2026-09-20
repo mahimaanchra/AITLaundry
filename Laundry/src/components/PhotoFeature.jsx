@@ -1,54 +1,55 @@
-import React from 'react';
-import { Camera, Check, Tag } from 'lucide-react';
+import { Camera, Check } from 'lucide-react';
+import Reveal from './landing/Reveal';
 
 export default function PhotoFeature() {
   return (
-    <section className="py-20 bg-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-6 space-y-4">
-            <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">
-              <Camera className="w-3.5 h-3.5" /> Optional Identification
+    <section className="border-t border-border py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-12">
+          <Reveal className="lg:col-span-6">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn">
+              <Camera aria-hidden="true" className="h-3.5 w-3.5" /> Optional Identification
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 leading-tight">
-              Need to identify a specific cloth later?
+            <h2 className="mt-4 text-balance font-display text-3xl font-semibold tracking-tight text-ink">
+              Need to identify a specific garment later?
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Students can optionally save a photo or unique tag identifier for individual clothes when submitting them. It’s completely optional—use it when you need extra clarity for expensive or similar-looking garments.
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+              Students can optionally save a photo or a unique tag for individual items when
+              submitting them. Use it for anything expensive, borrowed, or easy to mix up —
+              skip it for everything else.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-6">
-            <div className="bg-[#FAF7F2] p-6 rounded-2xl border-2 border-dashed border-amber-900/20 max-w-md mx-auto shadow-sm">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs font-bold text-slate-700">Cloth Identification</span>
-                <span className="text-[10px] bg-slate-200 font-bold text-slate-700 px-2 py-0.5 rounded">
+          <Reveal delay={0.1} className="lg:col-span-6">
+            <div className="bg-paper-ruled mx-auto max-w-sm rounded-lg border border-border bg-background p-5">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="font-mono text-xs font-semibold text-muted">Cloth Identification</span>
+                <span className="rounded bg-border/60 px-2 py-0.5 font-mono text-[10px] font-bold text-muted">
                   OPTIONAL
                 </span>
               </div>
 
-              {/* Mock Cloth Tile */}
-              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-3">
-                <div className="h-36 bg-slate-100 rounded-lg flex items-center justify-center text-4xl border border-slate-200">
+              <div className="space-y-3 rounded-md border border-border bg-surface p-4">
+                <div className="flex h-32 items-center justify-center rounded border border-border bg-background text-4xl">
                   👔
                 </div>
-                
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Navy Denim Jacket</h4>
-                    <p className="text-[11px] text-slate-500 font-mono">Code: SH-024</p>
+                    <h4 className="font-display text-sm font-semibold text-ink">Navy Denim Jacket</h4>
+                    <p className="font-mono text-[11px] text-muted">Code: SH-024</p>
                   </div>
-                  <div className="text-right text-[11px] font-semibold text-emerald-700 space-y-0.5">
-                    <div className="flex items-center gap-1"><Check className="w-3 h-3" /> Submitted</div>
-                    <div className="flex items-center gap-1"><Check className="w-3 h-3" /> Handed Over</div>
+                  <div className="space-y-0.5 text-right font-mono text-[11px] font-semibold text-teal">
+                    <div className="flex items-center justify-end gap-1">
+                      <Check aria-hidden="true" className="h-3 w-3" /> Submitted
+                    </div>
+                    <div className="flex items-center justify-end gap-1">
+                      <Check aria-hidden="true" className="h-3 w-3" /> Handed Over
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
-
+          </Reveal>
         </div>
       </div>
     </section>

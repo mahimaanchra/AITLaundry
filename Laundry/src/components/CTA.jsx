@@ -1,26 +1,27 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import Button from './common/Button';
+import Reveal from './landing/Reveal';
 
 export default function CTA() {
   return (
-    <section className="py-20 bg-[#1E3A8A] text-amber-50 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+    <section className="relative overflow-hidden bg-ink py-20 text-background sm:py-24">
+      <div className="bg-paper-grid pointer-events-none absolute inset-0 opacity-[0.06]" />
+      <Reveal className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <span className="font-mono text-xs font-semibold uppercase tracking-widest text-warn">
+          Register / 2026
+        </span>
+        <h2 className="mt-4 text-balance font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Ready to leave the paper register behind?
         </h2>
-        <p className="text-indigo-100 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-          Access your digital laundry register and keep every submission, washing state, and return cycle organized in one place.
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-background/65 sm:text-base">
+          Open your hostel&rsquo;s digital register and keep every submission, wash cycle, and
+          return organized in one searchable place.
         </p>
-        <div>
-          <a
-            href="/login"
-            className="inline-flex items-center space-x-2 bg-amber-50 text-[#1E3A8A] hover:bg-white px-8 py-4 rounded-xl font-extrabold text-base transition-all shadow-lg"
-          >
-            <span>Login to Register</span>
-            <ArrowRight className="w-5 h-5" />
-          </a>
+        <div className="mt-8 flex justify-center">
+          <Button href="/login" variant="invert">
+            Login
+          </Button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

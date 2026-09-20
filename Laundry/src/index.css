@@ -1,1 +1,142 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-background: var(--wl-background);
+  --color-surface: var(--wl-surface);
+  --color-elevated: var(--wl-elevated);
+  --color-ink: var(--wl-ink);
+  --color-muted: var(--wl-muted);
+  --color-border: var(--wl-border);
+  --color-accent: var(--wl-accent);
+  --color-accent-strong: var(--wl-accent-strong);
+  --color-accent-ink: var(--wl-accent-ink);
+  --color-teal: var(--wl-teal);
+  --color-teal-soft: var(--wl-teal-soft);
+  --color-warn: var(--wl-warn);
+  --color-warn-soft: var(--wl-warn-soft);
+  --color-danger: var(--wl-danger);
+  --color-danger-soft: var(--wl-danger-soft);
+  --color-paper-line: var(--wl-paper-line);
+  --color-paper-bg: var(--wl-paper-bg);
+  --color-paper-ink: var(--wl-paper-ink);
+  --color-paper-muted: var(--wl-paper-muted);
+  --color-paper-border: var(--wl-paper-border);
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+:root {
+  --wl-background: #f7f4ee;
+  --wl-surface: #ffffff;
+  --wl-elevated: #ffffff;
+  --wl-ink: #14171f;
+  --wl-muted: #5b6472;
+  --wl-border: #e4dfd3;
+  --wl-accent: #2947a3;
+  --wl-accent-strong: #1c3480;
+  --wl-accent-ink: #eef1fb;
+  --wl-teal: #0f6e64;
+  --wl-teal-soft: #e4f2ef;
+  --wl-warn: #b8721a;
+  --wl-warn-soft: #f7ecd9;
+  --wl-danger: #b4432e;
+  --wl-danger-soft: #f8e6e1;
+  --wl-paper-line: rgba(20, 23, 31, 0.07);
+  --wl-paper-bg: #efe8d6;
+  --wl-paper-ink: #3a3226;
+  --wl-paper-muted: #8a7a55;
+  --wl-paper-border: #c9bd9c;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --wl-background: #0b0d12;
+  --wl-surface: #12161d;
+  --wl-elevated: #181d26;
+  --wl-ink: #f2f4f7;
+  --wl-muted: #99a2b0;
+  --wl-border: #262c38;
+  --wl-accent: #6c93ef;
+  --wl-accent-strong: #8faaf3;
+  --wl-accent-ink: #0e1526;
+  --wl-teal: #35c7ae;
+  --wl-teal-soft: #143029;
+  --wl-warn: #e0a64d;
+  --wl-warn-soft: #322616;
+  --wl-danger: #e2685a;
+  --wl-danger-soft: #331d1a;
+  --wl-paper-line: rgba(255, 255, 255, 0.065);
+  --wl-paper-bg: #efe8d6;
+  --wl-paper-ink: #3a3226;
+  --wl-paper-muted: #8a7a55;
+  --wl-paper-border: #c9bd9c;
+
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--wl-background);
+  color: var(--wl-ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+::selection {
+  background-color: var(--wl-teal-soft);
+  color: var(--wl-ink);
+}
+
+/* Subtle dot-grid paper texture, used as a section background utility */
+.bg-paper-grid {
+  background-image: radial-gradient(var(--wl-paper-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Faint ruled-paper lines, used behind register-style compositions */
+.bg-paper-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 27px,
+    var(--wl-paper-line) 27px,
+    var(--wl-paper-line) 28px
+  );
+}
+
+.text-balance {
+  text-wrap: balance;
+}

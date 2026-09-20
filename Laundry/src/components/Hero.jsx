@@ -1,96 +1,114 @@
-import React from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, Tag } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, ShieldCheck, Tag } from 'lucide-react';
+import Button from './common/Button';
+import RegisterCard from './landing/RegisterCard';
+
+const GARMENTS = [
+  { label: 'Shirts', qty: '03' },
+  { label: 'Pants', qty: '02' },
+  { label: 'Bedsheets', qty: '01' },
+];
 
 export default function Hero() {
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 font-sans">
-      {/* Hero Body */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-6 space-y-6">
-            <span className="inline-block text-xs font-bold tracking-wider text-[#1E3A8A] uppercase bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full">
-              Modernizing Hostel Operations
-            </span>
-            
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
-              Your Hostel Laundry Register, <br />
-              <span className="text-[#1E3A8A]">Now Digital.</span>
-            </h1>
+    <section id="top" className="relative overflow-hidden pt-14 pb-20 sm:pt-20 sm:pb-28">
+      <div className="bg-paper-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
 
-            <p className="text-base text-slate-600 leading-relaxed max-w-xl">
-              Keep track of clothes submitted and returned with a simple digital register built around the way your hostel already works. No complicated inventory system—just clear, verifiable records.
-            </p>
+      <div className="mx-auto grid max-w-6xl gap-16 px-4 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6"
+        >
+          <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-accent">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            Hostel Operations / Laundry Register
+          </span>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <a 
-                href="/dashboard"
-                className="bg-[#1E3A8A] hover:bg-indigo-900 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors cursor-pointer"
-              >
-                <span>Login to Register</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#how-it-works" className="border border-slate-300 hover:bg-slate-100 text-slate-700 px-6 py-3 rounded-lg font-semibold flex items-center justify-center transition-colors">
-                See How It Works
-              </a>
-            </div>
+          <h1 className="mt-5 text-balance font-display text-[2.6rem] font-semibold leading-[1.08] tracking-tight text-ink sm:text-6xl">
+            Your hostel&rsquo;s laundry register
+            <span className="block text-accent">finally goes digital.</span>
+          </h1>
 
-            <div className="pt-6 border-t border-slate-200 grid grid-cols-2 gap-4 text-xs font-semibold text-slate-600">
-              <div className="flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Hostel → Flank → Page structure</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>Two-Way Handover Verification</span>
-              </div>
-            </div>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted">
+            Replace the paper register without changing how your laundry already works.
+            Students log what they submit, staff confirm what they receive, and every
+            page stays searchable long after the notebook would have run out.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button href="/login" variant="primary">
+              Login
+            </Button>
+            <Button href="#how-it-works" variant="secondary" showIcon={false}>
+              See How It Works
+            </Button>
           </div>
 
-          {/* Sample Card Display */}
-          <div className="lg:col-span-6">
-            <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 space-y-6">
-              <div className="flex justify-between items-start border-b border-slate-100 pb-4">
-                <div>
-                  <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Digital Laundry Register</span>
-                  <h3 className="text-lg font-bold text-slate-900">Sajal Rawat</h3>
-                  <p className="text-xs text-slate-500 font-medium">Hostel A • Flank F-03 • Page #27</p>
-                </div>
-                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Received
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex justify-between text-xs font-semibold text-slate-400 border-b border-slate-100 pb-2">
-                  <span>Garment Item</span>
-                  <span>Quantity</span>
-                </div>
-                <div className="flex justify-between text-sm font-medium text-slate-700">
-                  <span>👔 Shirts</span>
-                  <span className="font-bold text-slate-900">3</span>
-                </div>
-                <div className="flex justify-between text-sm font-medium text-slate-700">
-                  <span>👖 Pants</span>
-                  <span className="font-bold text-slate-900">2</span>
-                </div>
-                <div className="flex justify-between text-sm font-medium text-slate-700">
-                  <span>🛏️ Bedsheets</span>
-                  <span className="font-bold text-slate-900">1</span>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-                <span>17 Aug 2026</span>
-                <span className="font-mono bg-slate-100 text-slate-700 px-2 py-1 rounded font-semibold flex items-center gap-1">
-                  <Tag className="w-3 h-3" /> Tag #A3-027
-                </span>
-              </div>
+          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-border pt-6 text-xs font-semibold text-muted sm:max-w-md">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 aria-hidden="true" className="h-4 w-4 text-teal" />
+              <span>Hostel → Flank → Page structure</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck aria-hidden="true" className="h-4 w-4 text-teal" />
+              <span>Two-way handover verification</span>
             </div>
           </div>
+        </motion.div>
 
-        </div>
-      </section>
-    </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="relative lg:col-span-6"
+        >
+          <div className="relative mx-auto max-w-md [perspective:1400px]">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-20 rounded-lg border border-border bg-surface/40 [transform:translate3d(10px,12px,-40px)_rotateX(3deg)_rotateY(-4deg)]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-10 rounded-lg border border-border bg-surface/70 [transform:translate3d(5px,6px,-20px)_rotateX(3deg)_rotateY(-4deg)]"
+            />
+            <RegisterCard
+              eyebrow="Digital Laundry Register"
+              title="Sajal Rawat"
+              meta="Hostel A · Flank F-03 · Page #27"
+              status="Received"
+              statusTone="teal"
+              statusIcon={CheckCircle2}
+              className="[transform:rotateX(3deg)_rotateY(-4deg)] shadow-[0_35px_60px_-25px_rgba(20,23,31,0.4),0_14px_24px_-12px_rgba(20,23,31,0.25)] transition-transform duration-500 ease-out will-change-transform hover:[transform:rotateX(1.5deg)_rotateY(-2deg)]"
+              footer={
+                <div className="flex items-center justify-between text-xs text-muted">
+                  <span className="font-medium">17 Aug 2026</span>
+                  <span className="inline-flex items-center gap-1 rounded bg-background px-2 py-1 font-mono font-semibold text-ink">
+                    <Tag aria-hidden="true" className="h-3 w-3" /> Tag #A3-027
+                  </span>
+                </div>
+              }
+            >
+              <div className="flex justify-between border-b border-border pb-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
+                <span>Garment</span>
+                <span>Qty</span>
+              </div>
+              <ul>
+                {GARMENTS.map((item) => (
+                  <li
+                    key={item.label}
+                    className="flex justify-between border-b border-dashed border-border py-2.5 text-sm text-ink last:border-b-0"
+                  >
+                    <span className="font-medium">{item.label}</span>
+                    <span className="font-mono font-semibold">{item.qty}</span>
+                  </li>
+                ))}
+              </ul>
+            </RegisterCard>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }

@@ -4,7 +4,35 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>laundry</title>
+    <meta name="theme-color" id="theme-color-meta" content="#f7f4ee" />
+    <meta
+      name="description"
+      content="WashLog replaces your hostel's paper laundry register with a digital one — students log submissions, staff confirm receipt, and every handover is verified by both sides."
+    />
+    <meta property="og:title" content="WashLog — Laundry Register" />
+    <meta
+      property="og:description"
+      content="Digitize your hostel's laundry register. Two-way handover verification, arrival alerts, and a searchable page history that never runs out."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>WashLog — Laundry Register</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('washlog-theme');
+          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.getElementById('theme-color-meta');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#0b0d12' : '#f7f4ee');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

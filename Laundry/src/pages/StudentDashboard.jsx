@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/common/Layout';
 import LaundryEntryForm from '../components/student/LaundryEntryForm';
 import StatusTracker from '../components/student/StatusTracker';
@@ -7,7 +8,8 @@ import { useAuth } from '../context/AuthContext';
 
 export default function StudentDashboard() {
   const { entries, addEntry, updateStatus } = useLaundry();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const currentUser = user || {
@@ -35,45 +37,48 @@ export default function StudentDashboard() {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
-    <Layout user={currentUser}>
+    <Layout user={currentUser} onLogout={handleLogout}>
       <div className="space-y-6">
-        {/* Student Register Header Banner */}
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-6 rounded-2xl shadow-md border-2 border-emerald-600 flex flex-wrap justify-between items-center gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-ink bg-ink p-6 text-background">
           <div>
-            <span className="bg-yellow-300 text-slate-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="rounded-full border border-warn/30 bg-warn-soft px-3 py-1 font-mono text-[11px] font-bold text-warn">
               Active Register Page
             </span>
-            <h2 className="text-2xl font-black mt-2">
+            <h2 className="mt-3 font-display text-2xl font-semibold">
               {currentUser.name} ({currentUser.rollNo})
             </h2>
-            <p className="text-emerald-100 text-sm font-medium mt-1">
-              {currentUser.hostel} • {currentUser.flank} • Page #{currentUser.page}
+            <p className="mt-1 text-sm text-background/60">
+              {currentUser.hostel} · {currentUser.flank} · Page #{currentUser.page}
             </p>
           </div>
-          <div className="bg-white/10 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20 text-right">
-            <span className="text-xs text-emerald-100 block">Status</span>
-            <span className="font-bold text-yellow-300 text-base">
+          <div className="rounded-md border border-background/15 bg-background/5 px-4 py-3 text-right">
+            <span className="block font-mono text-[11px] uppercase tracking-widest text-background/50">Status</span>
+            <span className="font-display text-base font-semibold text-warn">
               {activeRequest ? activeRequest.status : 'Ready to Enter'}
             </span>
           </div>
         </div>
 
-        {/* Enter Register Form or View Tracker */}
         {activeRequest ? (
           <StatusTracker
             currentStatus={activeRequest.status}
             onConfirmReceipt={handleConfirmReceipt}
           />
         ) : (
-          <div className="bg-white p-6 rounded-2xl border-2 border-emerald-200 shadow-sm">
-            <h3 className="text-lg font-bold text-slate-900 mb-1">
-              🧺 Enter Laundry Register
-            </h3>
-            <p className="text-sm text-slate-500 mb-6">
+          <div className="rounded-lg border border-border bg-surface p-6">
+            <h3 className="font-display text-lg font-semibold text-ink">Enter Laundry Register</h3>
+            <p className="mt-1 text-sm text-muted">
               Add your clothes below and submit your digital register entry.
             </p>
-            <LaundryEntryForm onSubmit={handleEntrySubmit} loading={loading} />
+            <div className="mt-6">
+              <LaundryEntryForm onSubmit={handleEntrySubmit} loading={loading} />
+            </div>
           </div>
         )}
       </div>
