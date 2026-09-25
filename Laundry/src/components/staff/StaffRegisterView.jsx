@@ -1,4 +1,4 @@
-import { LAUNDRY_STATUS } from '../../utils/constants';
+import { LAUNDRY_STATUS, STATUS_DISPLAY } from '../../utils/constants';
 
 export default function StaffRegisterView({ pageData, onUpdateStatus }) {
   if (!pageData) {
@@ -10,6 +10,8 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
   }
 
   const { student, activeEntry } = pageData;
+  const currentStatus = activeEntry ? String(activeEntry.status).toLowerCase() : '';
+  const canUndo = activeEntry && currentStatus !== 'submitted';
 
   return (
     <div className="space-y-6 rounded-lg border border-border bg-surface p-6 shadow-[0_1px_2px_rgba(20,23,31,0.05)]">
@@ -27,7 +29,7 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
         <div className="text-right">
           <span className="block font-mono text-xs uppercase tracking-widest text-muted">Current Status</span>
           <span className="font-display text-sm font-semibold text-ink">
-            {activeEntry ? activeEntry.status : 'No Active Entry'}
+            {activeEntry ? (STATUS_DISPLAY[activeEntry.status] || activeEntry.status) : 'No Active Entry'}
           </span>
         </div>
       </div>
@@ -61,7 +63,8 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
           </div>
 
           <div className="flex flex-wrap gap-3 border-t border-border pt-4">
-            {activeEntry.status === LAUNDRY_STATUS.SUBMITTED && (
+            
+            {String(activeEntry.status).toLowerCase() === String(LAUNDRY_STATUS.SUBMITTED).toLowerCase() && (
               <button
                 onClick={() => onUpdateStatus(LAUNDRY_STATUS.RECEIVED_BY_STAFF)}
                 className="rounded-md bg-accent px-4 py-2 font-display text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-strong"
@@ -70,7 +73,7 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
               </button>
             )}
 
-            {activeEntry.status === LAUNDRY_STATUS.RECEIVED_BY_STAFF && (
+            {String(activeEntry.status).toLowerCase() === String(LAUNDRY_STATUS.RECEIVED_BY_STAFF).toLowerCase() && (
               <button
                 onClick={() => onUpdateStatus(LAUNDRY_STATUS.READY_FOR_PICKUP)}
                 className="rounded-md bg-teal px-4 py-2 font-display text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -79,7 +82,17 @@ export default function StaffRegisterView({ pageData, onUpdateStatus }) {
               </button>
             )}
 
-            {activeEntry.status === LAUNDRY_STATUS.STUDENT_CONFIRMED && (
+           {/* NEW: Universal Undo Button (Visible as long as it's not 'submitted') */}
+            {String(activeEntry.status).toLowerCase() !== String(LAUNDRY_STATUS.SUBMITTED).toLowerCase() && (
+              <button
+                onClick={() => onUpdateStatus('undo')}
+                className="rounded-md border border-border bg-transparent px-4 py-2 font-display text-sm font-semibold text-muted transition-colors hover:border-red-400 hover:text-red-500"
+              >
+                Undo Last Action
+              </button>
+            )}
+
+            {String(activeEntry.status).toLowerCase() === String(LAUNDRY_STATUS.STUDENT_CONFIRMED).toLowerCase() && (
               <button
                 onClick={() => onUpdateStatus(LAUNDRY_STATUS.COMPLETED)}
                 className="rounded-md bg-ink px-4 py-2 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90"

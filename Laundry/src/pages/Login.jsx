@@ -3,34 +3,46 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Quote, Shirt } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from '../components/common/ThemeToggle';
+import API from '../services/api';
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
-    setTimeout(() => {
-      const isStaff = formData.email.toLowerCase().includes('staff');
-      const mockUser = {
-        name: isStaff ? 'Ramesh Kumar' : 'Rahul Sharma',
-        role: isStaff ? 'STAFF' : 'STUDENT',
+    try {
+      const response = await API.post('/auth/login', {
         email: formData.email,
-        hostel: 'Hostel A',
-        flank: 'Flank 1',
-        page: '42',
-        ...(isStaff ? {} : { rollNo: '21045' }),
-      };
+        password: formData.password
+      });
 
-      login(mockUser);
+      // Safely extract the user data from the backend response
+      const userData = response.data.user || response.data.student || response.data.staff || response.data;
+      
+      // Update the AuthContext
+      login(userData);
+      
+      // Navigate to the correct dashboard based on role
+      const userRole = userData.role ? userData.role.toUpperCase() : '';
+      if (userRole === 'STAFF' || userRole === 'ADMIN') {
+        navigate('/staff');
+      } else {
+        navigate('/student');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      console.error('Login error:', err);
+    } finally {
       setLoading(false);
-      navigate(isStaff ? '/staff' : '/student');
-    }, 500);
+    }
   };
 
   return (
@@ -56,6 +68,12 @@ export default function Login() {
             <p className="mt-2 text-[15px] text-muted">
               Welcome to the Digital Laundry Register
             </p>
+
+            {error && (
+              <div className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-600 border border-red-200">
+                {error}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
               <input

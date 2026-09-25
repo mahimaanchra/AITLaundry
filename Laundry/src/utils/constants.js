@@ -11,18 +11,29 @@ export const CLOTH_TYPES = [
   'Other',
 ];
 
+// 1. These MUST match the exact words the backend sends/expects
 export const LAUNDRY_STATUS = {
-  SUBMITTED: 'Submitted',
-  RECEIVED_BY_STAFF: 'Received at Counter',
-  READY_FOR_PICKUP: 'Ready for Pickup',
-  STUDENT_CONFIRMED: 'Picked Up & Confirmed',
-  COMPLETED: 'Completed',
+  SUBMITTED: 'submitted',
+  RECEIVED_BY_STAFF: 'received',
+  READY_FOR_PICKUP: 'ready',
+  STUDENT_CONFIRMED: 'student_confirmed',
+  COMPLETED: 'distributed', // (or 'completed' depending on your backend)
 };
 
-// Vibrant Theme Color Mapping
+// 2. These make the UI look pretty on the screen
+export const STATUS_DISPLAY = {
+  'submitted': 'Submitted',
+  'received': 'Received at Counter',
+  'ready': 'Ready for Pickup',
+  'student_confirmed': 'Picked Up & Confirmed',
+  'distributed': 'Completed',
+};
+
+// 3. Updated Colors to map to the backend words
 export const STATUS_COLORS = {
-  Submitted: 'bg-yellow-100 text-yellow-800 border-yellow-300',
-  'Received at Counter': 'bg-emerald-100 text-emerald-800 border-emerald-300',
-  'Ready for Pickup': 'bg-green-100 text-green-800 border-green-300',
-  'Picked Up & Confirmed': 'bg-red-100 text-red-800 border-red-300',
+  'submitted': 'bg-yellow-100 text-yellow-800 border-yellow-300',
+  'received': 'bg-emerald-100 text-emerald-800 border-emerald-300',
+  'ready': 'bg-green-100 text-green-800 border-green-300',
+  'student_confirmed': 'bg-red-100 text-red-800 border-red-300',
+  'distributed': 'bg-gray-100 text-gray-800 border-gray-300',
 };

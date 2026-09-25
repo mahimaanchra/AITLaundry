@@ -5,6 +5,7 @@ import LaundryEntryForm from '../components/student/LaundryEntryForm';
 import StatusTracker from '../components/student/StatusTracker';
 import { useLaundry } from '../context/LaundryContext';
 import { useAuth } from '../context/AuthContext';
+import { LAUNDRY_STATUS } from '../utils/constants'; // Import the constants!
 
 export default function StudentDashboard() {
   const { entries, addEntry, updateStatus } = useLaundry();
@@ -14,14 +15,18 @@ export default function StudentDashboard() {
 
   const currentUser = user || {
     name: 'Rahul Sharma',
-    rollNo: '21045',
+    rollNo: '1001',
     role: 'STUDENT',
     hostel: 'Hostel A',
     flank: 'Flank 1',
-    page: '42',
+    page: '1',
   };
 
-  const activeRequest = entries.find((e) => e.page === currentUser.page);
+  // FIX: Just grab the first entry that isn't fully completed. 
+  // Since the backend only sends this student's data, we don't need to overcomplicate it!
+  const activeRequest = entries.find(
+    (e) => String(e.status).toLowerCase() !== String(LAUNDRY_STATUS.COMPLETED).toLowerCase()
+  );
 
   const handleEntrySubmit = (items) => {
     setLoading(true);
@@ -33,7 +38,8 @@ export default function StudentDashboard() {
 
   const handleConfirmReceipt = () => {
     if (activeRequest) {
-      updateStatus(activeRequest.id, 'Picked Up & Confirmed');
+      // FIX: Send the exact backend word expected by context
+      updateStatus(activeRequest.id || activeRequest._id, LAUNDRY_STATUS.STUDENT_CONFIRMED);
     }
   };
 
@@ -53,7 +59,7 @@ export default function StudentDashboard() {
             {currentUser.name} ({currentUser.rollNo})
           </h2>
           <p className="mt-1 text-sm text-background/60">
-            {currentUser.hostel} · {currentUser.flank} · Page #{currentUser.page}
+            {currentUser.hostel} · {currentUser.flank}
           </p>
         </div>
 
